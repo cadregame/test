@@ -106,12 +106,12 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 	</div>
 	<tw-storydata name="Untitled Story" startnode="1" creator="Twine" creator-version="2.10.0" format="SugarCube" format-version="2.37.3" ifid="6B823661-DEEC-4007-AD8D-5DE38E313A34" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript">Setup.sounds = {};
 
-Setup.sounds.typeLoop = new Audio("typing_loop.mp3");
+Setup.sounds.typeLoop = new Audio("[https://cadregame.github.io/test/audio/typing_loop.mp3](https://cadregame.github.io/test/audio/typing_loop.mp3)");
 Setup.sounds.typeLoop.loop = true;
 
-Setup.sounds.linkAppear = new Audio("linkAppear.mp3");
-Setup.sounds.linkFinal = new Audio("linkFinal.mp3");
-Setup.sounds.click = new Audio("click.mp3");
+Setup.sounds.linkAppear = new Audio("[https://cadregame.github.io/test/audio/linkAppear.mp3](https://cadregame.github.io/test/audio/linkAppear.mp3)");
+Setup.sounds.linkFinal  = new Audio("[https://cadregame.github.io/test/audio/linkFinal.mp3](https://cadregame.github.io/test/audio/linkFinal.mp3)");
+Setup.sounds.click      = new Audio("[https://cadregame.github.io/test/audio/click.mp3](https://cadregame.github.io/test/audio/click.mp3)");
 
 window.audioUnlocked = false;
 
@@ -120,6 +120,13 @@ function playSound(a) {
 if (!window.audioUnlocked) return;
 try { a.currentTime = 0; a.play(); } catch(e) {}
 }
+
+// Unlock audio on first user click (or tap)
+document.addEventListener("click", function unlockAudio() {
+if (!window.audioUnlocked) {
+window.audioUnlocked = true;
+}
+}, { once: true });
 
 // Typewriter hooks
 $(document).on(":typewriter-start", function () {
@@ -133,7 +140,7 @@ Setup.sounds.typeLoop.pause();
 Setup.sounds.typeLoop.currentTime = 0;
 });
 
-// Link appear / click sounds
+// Link appear & click sounds
 $(document).on(':passagedisplay', function () {
 const links = document.querySelectorAll("tw-link:not([data-sound])");
 links.forEach((link, i) => {
@@ -143,17 +150,8 @@ const isFinal = (i === links.length - 1);
 ```
     // staggered link appear sound
     setTimeout(() => {
-        playSound(isFinal ? Setup.sounds.linkFinal : Setup.sounds.linkAppear);
-    }, 50 + i*80);
-
-    // click sound
-    link.addEventListener("click", () => {
-        playSound(Setup.sounds.click);
-    });
-});
+        playSound(isFinal ? Setup.so
 ```
-
-});
 </script><tw-passagedata pid="1" name="Untitled Passage" tags="" position="875,500" size="100,100">[[Untitled Passage 1]]
 
 &lt;&lt;set $checkedpockets to true&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Untitled Passage 1" tags="" position="1200,500" size="100,100">&lt;&lt;nobr&gt;&gt;
